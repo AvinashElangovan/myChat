@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FirebaseTSAuth} from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-authenticator',
@@ -9,7 +10,7 @@ import {FirebaseTSAuth} from 'firebasets/firebasetsAuth/firebaseTSAuth';
 export class AuthenticatorComponent implements OnInit {
 state=AuthenticatorCompState.LOGIN;
 firebasetsAuth: FirebaseTSAuth;
-  constructor() { 
+  constructor(private bottomSheetRef : MatBottomSheetRef) { 
     this.firebasetsAuth=new FirebaseTSAuth();
   }
 
@@ -46,7 +47,8 @@ this.firebasetsAuth.signInWith(
     email: email,
     password: password,
     onComplete: (uc)=>{
-      alert("Logged In");
+      // alert("Logged In");
+      this.bottomSheetRef.dismiss();
     },
     onFail: (err)=>{
       alert(err);
@@ -77,10 +79,11 @@ this.firebasetsAuth.signInWith(
           email: email,
           password: password,
           onComplete: (uc)=>{
-            alert ("Account Created");
-            registerEmail.value ="";
-            registerPassword.value = "";
-            registerConfirmPassword.value=""
+            // alert ("Account Created");
+            // registerEmail.value ="";
+            // registerPassword.value = "";
+            // registerConfirmPassword.value=""
+            this.bottomSheetRef.dismiss();
           },
           onFail:(err)=>{
             alert("Failed to create the account.");
