@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { Router} from '@angular/router'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,24 +14,27 @@ export class AppComponent {
   auth = new FirebaseTSAuth();
   // isLoggedIn = false;
 
-  constructor(private loginSheet: MatBottomSheet) {
+  constructor(private loginSheet: MatBottomSheet, private router: Router) {
     this.auth.listenToSignInStateChanges((user) => {
       this.auth.checkSignInState({
         whenSignedIn: (user) => {
-          alert('Logged In');
+          // alert('Logged In');
           // this.isLoggedIn = true;
         },
         whenSignedOut: (user) => {
-          alert("logged out")
+          // alert("logged out")
         },
         whenSignedInAndEmailNotVerified: (user) => {
-
+          this.router.navigate(["emailVerification"]);
         },
         whenSignedInAndEmailVerified: (user) => {
           
         },
+        whenChanged: user =>{
+
+        }
       });
-    });
+    }); 
     {
     }
     
