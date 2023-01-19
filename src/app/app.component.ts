@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
-import { Router} from '@angular/router'
+import { Router} from '@angular/router';
+import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +39,10 @@ export class AppComponent {
     {
     }
     
+  }
+
+  getUserProfile(){
+  
   }
 
   loggedIn(){
